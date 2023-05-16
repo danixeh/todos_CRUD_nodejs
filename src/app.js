@@ -108,6 +108,7 @@ app.put("/api/v1/todos/:id", async (req, res) => {
   }
 });
 
+console.log(process.env);
 // -------------------
 
 app.listen(8000, () => {
