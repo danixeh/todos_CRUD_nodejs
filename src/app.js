@@ -1,9 +1,12 @@
 // 2 step: install nodemon for do hot reload
 // commments for reastart
-
+require("dotenv").config();
 const express = require("express");
+
 const db = require("./utils/database.js");
 const Todos = require("./models/users.models.js");
+
+const PORT = process.env.PORT || 8000;
 
 db.authenticate()
   .then(() => console.log("Database connected"))
@@ -108,9 +111,8 @@ app.put("/api/v1/todos/:id", async (req, res) => {
   }
 });
 
-console.log(process.env);
 // -------------------
 
-app.listen(8000, () => {
-  console.log("server running on port ok ok");
+app.listen(PORT, () => {
+  console.log(`server running on ${PORT} Port`);
 });
