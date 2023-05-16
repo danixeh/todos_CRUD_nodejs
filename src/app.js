@@ -1,22 +1,24 @@
 // 2 step: install nodemon for do hot reload
 // commments for reastart
-require("dotenv").config();
 const express = require("express");
-
 const db = require("./utils/database.js");
 const Todos = require("./models/users.models.js");
+const cors = require("cors");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 8000;
 
 db.authenticate()
   .then(() => console.log("Database connected"))
-  .catch(() => console.log(err));
+  .catch((err) => console.log(err));
 
 db.sync() // if any table does not exist, it will create it, if not does not do anything.
   .then(() => console.log("Database synchronized"))
-  .catch(() => console.log(err));
+  .catch((err) => console.log(err));
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
